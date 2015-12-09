@@ -17,28 +17,16 @@ post '/charge' do
   token = params[:stripeToken]
 
   # Create the charge on Stripe's servers - this will charge the user's card
- # begin
-  #  charge = Stripe::Charge.create(
- #     :amount => params[:amount], # this number should be in cents
-  #    :currency => "usd",
- #     :card => token,
-  #    :description => "Example Charge"
-  #  )
- # rescue Stripe::CardError => e
- #   status 402
-#    return "Error creating charge."
-#  end
-
-begin
-  charge = Stripe::Charge.create(
-    :amount => 1000, # amount in cents, again
-    :currency => "usd",
-    :source => token,
-    :description => "Example charge"
-  )
+  begin
+   charge = Stripe::Charge.create(
+      :amount => params[:amount], # this number should be in cents
+      :currency => "usd",
+      :card => token,
+      :description => "Example Charge"
+    )
   rescue Stripe::CardError => e
-  status 402
-  return "Error creating charge."
+    status 402
+    return "Error creating charge."
   end
 
   status 200
