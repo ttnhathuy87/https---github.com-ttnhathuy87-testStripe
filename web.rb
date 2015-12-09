@@ -29,6 +29,18 @@ post '/charge' do
 #    return "Error creating charge."
 #  end
 
+begin
+  charge = Stripe::Charge.create(
+    :amount => 1000, # amount in cents, again
+    :currency => "usd",
+    :source => token,
+    :description => "Example charge"
+  )
+  rescue Stripe::CardError => e
+  status 402
+  return "Error creating charge."
+  end
+
   status 200
   return "Order successfully created"
 
