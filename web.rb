@@ -21,8 +21,7 @@ post '/charge' do
    charge = Stripe::Charge.create({
         :amount => 100,
         :card => token,
-        :description => "Example Charge"
-        },
+        :description => "Example Charge",
         :currency => "usd"
       })
    #Stripe::Charge.create({
