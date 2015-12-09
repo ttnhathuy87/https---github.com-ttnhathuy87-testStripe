@@ -5,6 +5,7 @@ require 'dotenv'
 Dotenv.load
 
 Stripe.api_key = ENV['sk_test_xUpT6Ptp06OqDCYVxFVOu1hz']
+Stripe.api_key = "sk_test_xUpT6Ptp06OqDCYVxFVOu1hz"
 
 get '/' do
   status 200
