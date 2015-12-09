@@ -28,9 +28,9 @@ post '/charge' do
     status 402
     return "Error creating charge."
     
-  rescue Exception => e
+  rescue Exception => ee
     status 400
-    return e
+    return ee.backtrace
   end
 
   status 200
